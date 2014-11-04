@@ -2,12 +2,12 @@ import networkx as nx
 import random
 import matplotlib.pyplot as plt
 import numpy as np
-g=nx.random_graphs.binomial_graph(1000, 0.001)
-p1=0.2#bad match
+g=nx.random_graphs.binomial_graph(1000, 0.01)
+p1=0.1#bad match
 p2=0.5#back to market
 paces=range(10,1010,10)
 ans={i:[]for i in paces}
-for k in range(10):
+for k in range(50):
     print k
     for pace in paces:
         pos=pace
@@ -23,10 +23,10 @@ for k in range(10):
                     if random.random()>p2:
                         bad+=1
                         cur.remove(j)
-            cur+=range(pos,pos+pace)
+            cur+=range(pos,1000)
             if pos>=1000:
                 break
-            pos=pos+pace
+            pos=pos+1000
         bad+=len([i for i in cur if i<1000])
         ans[pace]+=[bad]
 plt.plot(paces,[np.mean(ans[i]) for i in paces])
