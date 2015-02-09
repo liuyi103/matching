@@ -22,7 +22,7 @@ for i in range(m):
             con[i,j]=con[j,i]=1
 d=oovar('d',domain=int)
 bef,ov=oovars('bef ov',domain=bool)
-loss=[p*(1-p)**(m+1)-p*(1-p)**m for i in range(m)]
+loss=[p*(1-p)**(i+1)-p*(1-p)**i for i in range(m)]
 obj = p*m+sum([ov[i]*loss[i%m] for i in range(m*m)])
  
 # Start point - currently matters only size of variables
